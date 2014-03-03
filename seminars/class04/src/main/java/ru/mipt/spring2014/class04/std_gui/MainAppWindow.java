@@ -170,7 +170,9 @@ public class MainAppWindow extends javax.swing.JFrame
 
 	private void aboutMenuItemActionPerformed (java.awt.event.ActionEvent evt)//GEN-FIRST:event_aboutMenuItemActionPerformed
 	{//GEN-HEADEREND:event_aboutMenuItemActionPerformed
-		new AboutDialog (this, true).setVisible (true);
+            AboutDialog ad = new AboutDialog(this, true);
+            ad.setLocation(512, 360);
+            ad.setVisible(true);            
 	}//GEN-LAST:event_aboutMenuItemActionPerformed
 
 	private void jButton1ActionPerformed (java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
@@ -179,7 +181,7 @@ public class MainAppWindow extends javax.swing.JFrame
 	}//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
