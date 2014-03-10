@@ -14,7 +14,6 @@ public class ImageMover extends Thread
 
 	private int width = 0, height = 0;
 	private Point position = new Point ();
-        private long timeo=System.currentTimeMillis();
 	private int vx = 0, vy = 0;
 
 	public ImageMover (JComponent component)
@@ -41,11 +40,9 @@ public class ImageMover extends Thread
 
 	private Point calculateNewPosition ()
 	{
-                long timec = System.currentTimeMillis();
 		Point newPos = new Point (position);
-		newPos.x += vx*(timec-timeo)/2;
-		newPos.y += vy*(timec-timeo)/2;
-                timeo=timec;
+		newPos.x += vx;
+		newPos.y += vy;
 		if (newPos.x < 0)
 		{
 			newPos.x = -newPos.x;
