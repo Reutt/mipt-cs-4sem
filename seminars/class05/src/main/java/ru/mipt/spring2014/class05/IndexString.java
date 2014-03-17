@@ -60,6 +60,11 @@ public class IndexString implements Comparable<IndexString>
 			return 1;
 		}
 		
-		return this.value.compareTo (other.value);
+		if((this.value!=null)&&(other.value!=null))
+		{
+			return this.value.compareTo(other.value);
+		}
+		
+		return 0;
 	}
 }

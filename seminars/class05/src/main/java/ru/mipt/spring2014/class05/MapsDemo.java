@@ -35,6 +35,7 @@ public class MapsDemo
 		map.put (new IndexString (7, "Bbb"), 4L);
 		map.put (new IndexString (-6, "Yyy"), 5L);
 		map.put (new IndexString (0, "---"), 6L);
+		map.put (new IndexString (1, null), 2L);
 		map.put (new IndexString (1, "NotEmpty"), 7L);
 		map.put (new IndexString (0, "---"), 9L);
 		map.put (new IndexString (7, "Aaa"), 8L);
