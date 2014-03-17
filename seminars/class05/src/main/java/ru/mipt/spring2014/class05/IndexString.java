@@ -4,10 +4,13 @@
  */
 package ru.mipt.spring2014.class05;
 
+
 import java.util.Objects;
 
-public class IndexString //TODO: IndexString implements Comparable<IndexString>, compareto
+
+public class IndexString implements Comparable<IndexString>
 {
+
 	private final int index;
 	private final String value;
 
@@ -43,8 +46,20 @@ public class IndexString //TODO: IndexString implements Comparable<IndexString>,
 		}
 		
 	}
-	
-	
-	
-	
+
+	@Override
+	public int compareTo (IndexString other)
+	{
+		if(this.index<other.index)
+		{
+			return -1;
+		}
+		
+		if(this.index>other.index)
+		{
+			return 1;
+		}
+		
+		return this.value.compareTo (other.value);
+	}
 }

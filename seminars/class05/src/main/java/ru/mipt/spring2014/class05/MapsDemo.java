@@ -39,9 +39,9 @@ public class MapsDemo
 		map.put (new IndexString (0, "---"), 9L);
 		map.put (new IndexString (7, "Aaa"), 8L);
 		System.out.println ("map = " + map);
-		System.out.println ("map[0, ---] = " + map.get (new IndexString (0, "---")));
+		System.out.println ("map[#0 ---] = " + map.get (new IndexString (0, "---")));
 
-//		final Map<IndexString, Long> orderedMap = new TreeMap<> (map);
-//		System.out.println ("orderedMap = " + orderedMap);
+		final Map<IndexString, Long> orderedMap = new TreeMap<> (map);
+		System.out.println ("orderedMap = " + orderedMap);
 	}
 }

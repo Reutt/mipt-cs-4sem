@@ -22,12 +22,12 @@ public class CollectionsDemo
 		listOfStrings.add ("str3");
 		listOfStrings.add ("aaa");
 		System.out.println ("listOfStrings = " + listOfStrings);
+		System.out.println ("listOfStrings[1] = " + listOfStrings.get (1));
 		final Collection<String> stillList = listOfStrings;
 		System.out.println ("stillList = " + stillList);
 		System.out.println ("lstOfStrings == stillList:"+(listOfStrings==stillList));
 		Collections.sort (listOfStrings);
 		System.out.println ("listOfStrings = "+ listOfStrings);
-
 		final Set<String> setOfStrings = new HashSet<> ();
 		setOfStrings.add ("Str1");
 		setOfStrings.add ("Str2");
