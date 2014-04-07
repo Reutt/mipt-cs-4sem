@@ -34,6 +34,9 @@ public class FieldController implements Runnable
 			ball.setVelocity (Math.random (), Math.random ());
 			currentState.addNew (ball);
 		}
+		Ball balf = new Ball (0.1, Color.MAGENTA);
+		balf.setVelocity (4*Math.random (), 4*Math.random ());
+		currentState.addNew(balf);
 	}
 
 	public FieldModel getCurrentState ()
