@@ -163,7 +163,7 @@ public class FieldView extends javax.swing.JPanel
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-		final FieldModel field = lastPaintedState;
+		final FieldModel field = lastPaintedState==null?backend.getCurrentState ():lastPaintedState;
 		final double x = getXFieldCoord (field, evt.getX ()), y = getYFieldCoord (field, evt.getY ());
 		System.out.println ("Hit at (" + x + ", " + y + ")");
 		final Ball ball = field.findBall (x, y);
