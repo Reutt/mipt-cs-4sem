@@ -5,6 +5,7 @@ import ru.mipt.spring2014.class08.FieldController;
 import ru.mipt.spring2014.class08.field.Ball;
 import ru.mipt.spring2014.class08.field.FieldModel;
 
+
 /**
  *
  * @author Andrei
@@ -12,6 +13,7 @@ import ru.mipt.spring2014.class08.field.FieldModel;
 public class FieldView extends javax.swing.JPanel
 {
 	private final FieldController backend;
+	private FieldModel lastPaintedState;
 	private final Rectangle viewBounds = new Rectangle ();
 
 	/**
@@ -103,8 +105,9 @@ public class FieldView extends javax.swing.JPanel
 		graphics.clearRect (viewBounds.x, viewBounds.y, viewBounds.width + 1, viewBounds.height + 1);
 
 		drawBorder (graphics);
+		lastPaintedState = backend.getCurrentState ();
 		
-		drawFieldState (graphics, backend.getCurrentState ());
+		drawFieldState (graphics, lastPaintedState);
 	}
 
 	/**
@@ -122,6 +125,10 @@ public class FieldView extends javax.swing.JPanel
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 formMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                formMousePressed(evt);
             }
         });
         addComponentListener(new java.awt.event.ComponentAdapter()
@@ -151,7 +158,12 @@ public class FieldView extends javax.swing.JPanel
 
     private void formMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_formMouseClicked
     {//GEN-HEADEREND:event_formMouseClicked
-		final FieldModel field = backend.getCurrentState ();
+
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+		final FieldModel field = lastPaintedState;
 		final double x = getXFieldCoord (field, evt.getX ()), y = getYFieldCoord (field, evt.getY ());
 		System.out.println ("Hit at (" + x + ", " + y + ")");
 		final Ball ball = field.findBall (x, y);
@@ -162,7 +174,7 @@ public class FieldView extends javax.swing.JPanel
 			newBall.setVelocity (2 * (Math.random () - 0.5), 2 * (Math.random () - 0.5));
 			backend.changeBall (newBall);
 		}
-    }//GEN-LAST:event_formMouseClicked
+    }//GEN-LAST:event_formMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
