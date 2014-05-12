@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.mycompany</groupId>
-  <artifactId>project_zk</artifactId>
+  <artifactId>logirovanie</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>project_zk</name>
+  <name>logirovanie</name>
   <url>http://maven.apache.org</url>
     <build>
         <plugins>
