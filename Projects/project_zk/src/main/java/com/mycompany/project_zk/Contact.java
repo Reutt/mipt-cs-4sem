@@ -10,10 +10,10 @@ package com.mycompany.project_zk;
  *
  * @author Jan
  */
-public class ZKContact {
+public class Contact {
     private final String name1, name2, name3, telnum, icqnum, skypenum;
     
-    public ZKContact(String name1, String name2, String name3, String telnum, String icqnum, String skypenum)
+    public Contact(String name1, String name2, String name3, String telnum, String icqnum, String skypenum)
     {
         this.name1 = name1;
         this.name2 = name2;
@@ -45,6 +45,12 @@ public class ZKContact {
 
     public String getTelnum() {
         return telnum;
-    } 
+    }
+
+    @Override
+    public String toString() {
+        return this.name1+"|"+this.name2+"|"+this.name3+"|"
+                +this.telnum+"|"+this.icqnum+"|"+this.skypenum; //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

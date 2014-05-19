@@ -6,8 +6,10 @@
 
 package com.mycompany.project_zk;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -177,7 +179,7 @@ public class ZKFrame extends javax.swing.JFrame {
         }
         else
         {
-            new ZKAdd(controller, jTable1.getSelectedRow()).setVisible(true);
+            new AddContact(controller, jTable1.getSelectedRow()).setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -186,7 +188,7 @@ public class ZKFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ZKAdd(controller, -1).setVisible(true);
+        new AddContact(controller, -1).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -196,44 +198,57 @@ public class ZKFrame extends javax.swing.JFrame {
         }
         else
         {
-            new ZKDel(controller, jTable1.getSelectedRow()).setVisible(true);
+            new DeleteContact(controller, jTable1.getSelectedRow()).setVisible(true);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new ZKClear(controller).setVisible(true);
+        new ClearContacts(controller).setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        JFileChooser fileopen = new JFileChooser();
-        fileopen.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileopen.setFileFilter(new javax.swing.filechooser.FileFilter() {
-
-            @Override
-            public boolean accept(File f) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public String getDescription() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        }); //TODO: .txt filter
-        int ret = fileopen.showDialog(null, "Сохранить файл");
-        if (ret == JFileChooser.APPROVE_OPTION)
+        int i=0;
+        JFileChooser fileSaved = new JFileChooser();
+        fileSaved.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        if (fileSaved.showDialog(null, "Сохранить файл") == JFileChooser.APPROVE_OPTION)
         {
-            File file = fileopen.getSelectedFile();
+            try (FileWriter fw = new FileWriter(fileSaved.getSelectedFile())) {
+                while(i<controller.listOfContacts.size())
+                {
+                    fw.write(controller.listOfContacts.get(i).toString()+"\n");
+                    i++;
+                }
+                fw.close();
+            }
+            catch (IOException e) {
+                System.out.println("Ошибка ввода/вывода!");
+            }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        JFileChooser fileopen = new JFileChooser();
-        fileopen.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileopen.setFileFilter(null); //TODO: .txt filter
-        int ret = fileopen.showDialog(null, "Загрузить файл");
-        if (ret == JFileChooser.APPROVE_OPTION)
+        String temp;
+        String[] tempa;
+        JFileChooser fileOpen = new JFileChooser();
+        fileOpen.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        if (fileOpen.showDialog(null, "Открыть файл") == JFileChooser.APPROVE_OPTION)
         {
-            File file = fileopen.getSelectedFile();
+            try(BufferedReader fr = new BufferedReader(new FileReader(fileOpen.getSelectedFile())))
+            {
+                while((temp = fr.readLine()) != null)
+                {
+                    tempa = temp.split("\\|", -1);
+                    Object[] data = {null, tempa[0],tempa[1],tempa[2],
+                            tempa[3],tempa[4],tempa[5]};
+                    controller.listOfContacts.add(new Contact(tempa[0],tempa[1],tempa[2],
+                            tempa[3],tempa[4],tempa[5]));
+                    controller.controlTable.addRow(data);
+                    controller.ZKCRefreshTable();
+                }
+            }
+            catch (IOException e){
+                System.out.println("Ошибка ввода/вывода!");
+            }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

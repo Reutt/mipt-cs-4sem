@@ -10,15 +10,17 @@ package com.mycompany.project_zk;
  *
  * @author Jan
  */
-public class ZKClear extends javax.swing.JFrame {
+public class DeleteContact extends javax.swing.JFrame {
     
     private final ZKControl controller;
+    private final int rowDel;
 
     /**
      * Creates new form ZKDel
      */
-    public ZKClear(ZKControl mcontroller) {
+    public DeleteContact(ZKControl mcontroller, int rowDel) {
         this.controller = mcontroller;
+        this.rowDel = rowDel;
         initComponents();
     }
 
@@ -39,7 +41,7 @@ public class ZKClear extends javax.swing.JFrame {
         setTitle("Удаление");
         setResizable(false);
 
-        jLabel1.setText("Таблица будет очищена. Продолжить?");
+        jLabel1.setText("Данная строка будет удалена. Продолжить?");
 
         jButton1.setText("Да");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,21 +63,22 @@ public class ZKClear extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -86,11 +89,8 @@ public class ZKClear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.listOfContacts.clear();
-       while(controller.controlTable.getRowCount()>0)
-       {
-           controller.controlTable.removeRow(0);
-       }
+        controller.listOfContacts.remove(rowDel);
+        controller.controlTable.removeRow(rowDel);
         controller.ZKCRefreshTable();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

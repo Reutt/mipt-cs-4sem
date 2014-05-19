@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ZKControl {
     
-    List<ZKContact> listOfContacts = new ArrayList<> ();
+    List<Contact> listOfContacts = new ArrayList<> ();
     DefaultTableModel controlTable;
     
     public ZKControl ()

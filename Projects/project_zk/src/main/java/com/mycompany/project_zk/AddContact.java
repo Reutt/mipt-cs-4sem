@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jan
  */
-public class ZKAdd extends javax.swing.JFrame {
+public class AddContact extends javax.swing.JFrame {
     
     private final ZKControl controller;
     private final int editRow;
@@ -20,7 +20,7 @@ public class ZKAdd extends javax.swing.JFrame {
     /**
      * Creates new form ZKAdd
      */
-    public ZKAdd(ZKControl mcontroller, int editRow) {
+    public AddContact(ZKControl mcontroller, int editRow) {
         this.controller=mcontroller;
         this.editRow=editRow;
         initComponents();
@@ -192,7 +192,7 @@ public class ZKAdd extends javax.swing.JFrame {
             
             Object [] data = {null, jTextField1.getText(), jTextField2.getText(),
                 jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText()};
-            controller.listOfContacts.set(editRow, new ZKContact(jTextField1.getText(), jTextField2.getText(),
+            controller.listOfContacts.set(editRow, new Contact(jTextField1.getText(), jTextField2.getText(),
                 jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText()));
             controller.controlTable.removeRow(editRow);
             controller.controlTable.insertRow(editRow, data);
@@ -201,7 +201,7 @@ public class ZKAdd extends javax.swing.JFrame {
         {
             Object [] data = {null, jTextField1.getText(), jTextField2.getText(),
                 jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText()};
-            controller.listOfContacts.add(new ZKContact(jTextField1.getText(), jTextField2.getText(),
+            controller.listOfContacts.add(new Contact(jTextField1.getText(), jTextField2.getText(),
                 jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText()));
             controller.controlTable.addRow(data);
         }
@@ -210,7 +210,7 @@ public class ZKAdd extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // new ZKAdd().setVisible(false);
+       // new AddContact().setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
